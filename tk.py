@@ -26,7 +26,7 @@ w.create_image(0, 0, image=img, anchor="nw")
 #main color selection function
 def isolation(pixels):
     value = pixels
-    rng = 100
+    rng = scale.get()
     curr_value = np.zeros(3)
     distance = 0
     dim = im_rgb.shape
@@ -56,6 +56,9 @@ def on_click(eventorigin):
     pixel_values = image.getdata()
     tk.messagebox.showinfo("Selected pixel values", pixel_values[x*y])
     isolation(pixel_values[x*y])
+
+scale = Scale(root, from_ = 0, to = 255, orient = HORIZONTAL, length = 100, label = "Color radius")
+scale.place(x = 0, y = 0)
 
 #mouseclick event
 w.bind("<Button 1>",on_click)
